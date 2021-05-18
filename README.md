@@ -7,3 +7,6 @@ This is a quick little script I wrote to remind me of things. The current versio
 I included an empty section for Linux for when I am sitting in front of my Linux box and want the same functionality; certainly it's a little bit trickier insofar as the myriad of notification systems available. 
 
 Hope this is useful for you. If you do make it work under Linux, PRs are always welcome!
+
+## Installation
+I put the script in `$HOME/.local/bin`; it can go anywhere you have permissions for and is on the path.
