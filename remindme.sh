@@ -30,7 +30,7 @@ echo Okay, at `date -r $later` I\'ll remind you of: $2
 if [ "$(uname)" == "Darwin" ]; then
   cmd="sleep $1; say $2; osascript -e 'display notification \"$2 \" with title \"remindme.sh\" subtitle \"`date -r $later` Reminder:\"'"
 elif [ "$(uname)" == "Linux" ]; then
-    # Do something under GNU/Linux platform
+  echo ToDo: Linux support
 fi
 
 # Now we're gonna actually run the command. Because we're
