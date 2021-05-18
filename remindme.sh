@@ -21,20 +21,20 @@ fi
 now=`date +%s`
 later=`expr $now + $1`
 
-echo Okay, at `date -r $later` I\'ll remind you of: $2
-
-
 # Now we're going to build the command to execute via nohup
 # The Mac-specific commands here are "say" and "osascript".
+# For Linux it uses the "notify-send" command.
 # For other *nixes, put whatever you want for notification.
 if [ "$(uname)" == "Darwin" ]; then
+  echo Okay, at `date -r $later` I\'ll remind you of: $2
   cmd="sleep $1; say $2; osascript -e 'display notification \"$2 \" with title \"remindme.sh\" subtitle \"`date -r $later` Reminder:\"'"
 elif [ "$(uname)" == "Linux" ]; then
-  echo ToDo: Linux support
+  echo Okay, at `date -d @$later` I\'ll remind you of: $2
+  cmd="sleep $1; notify-send -u normal \"$2\""
 fi
 
 # Now we're gonna actually run the command. Because we're
 # running as nohup, this script will end immediately and
 # eventually the time will elapse and the notifications will
 # be sent
-nohup sh -c `eval $cmd` > /dev/null &
+nohup sh -c `eval $cmd` > /dev/null 2>&1 &
